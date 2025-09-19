@@ -22,9 +22,9 @@ class ItemDetailPage extends StatelessWidget {
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color(0xFFF72585), Color(0xFF3A0CA3)],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
+            colors: [Color(0xFF2193b0), Color(0xFF6dd5ed)], // Consistent Ocean Breeze gradient
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
           ),
         ),
         child: SafeArea(
@@ -48,7 +48,7 @@ class ItemDetailPage extends StatelessWidget {
               if (item == null) {
                 return Center(
                   child: Text(
-                    'Item not found 🤷',
+                    'Item not found',
                     style: GoogleFonts.poppins(color: Colors.white),
                   ),
                 );
@@ -64,8 +64,7 @@ class ItemDetailPage extends StatelessWidget {
                         children: [
                           GestureDetector(
                             onTap: () => Navigator.pop(context),
-                            child:
-                            const Icon(Icons.arrow_back_ios, color: Colors.white),
+                            child: const Icon(Icons.arrow_back_ios, color: Colors.white),
                           ),
                           const SizedBox(width: 8),
                           Text(
@@ -85,8 +84,10 @@ class ItemDetailPage extends StatelessWidget {
                         onTap: () => Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (_) =>
-                                FullScreenImagePage(itemId: item.id, imageUrl: item.imageUrl),
+                            builder: (_) => FullScreenImagePage(
+                              itemId: item.id,
+                              imageUrl: item.imageUrl,
+                            ),
                           ),
                         ),
                         child: Hero(
@@ -128,8 +129,8 @@ class ItemDetailPage extends StatelessWidget {
                         '₱ ${item.price.toStringAsFixed(2)}',
                         style: GoogleFonts.poppins(
                           fontSize: 22,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.yellowAccent,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.amberAccent,
                         ),
                       ),
                       const SizedBox(height: 24),
@@ -191,7 +192,7 @@ class ItemDetailPage extends StatelessWidget {
                     right: 16,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.yellowAccent,
+                        backgroundColor: Colors.deepPurple, // consistent button color
                         padding: const EdgeInsets.symmetric(vertical: 16),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
@@ -203,8 +204,7 @@ class ItemDetailPage extends StatelessWidget {
                         Uri.encodeComponent('Inquiry about "${item.title}"');
                         final uri = Uri.parse('mailto:$email?subject=$subject');
                         try {
-                          await launchUrl(uri,
-                              mode: LaunchMode.externalApplication);
+                          await launchUrl(uri, mode: LaunchMode.externalApplication);
                         } catch (_) {
                           showDialog(
                             context: context,
@@ -229,7 +229,7 @@ class ItemDetailPage extends StatelessWidget {
                         style: GoogleFonts.poppins(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          color: Colors.deepPurple,
+                          color: Colors.white, // white text for contrast
                         ),
                       ),
                     ),
